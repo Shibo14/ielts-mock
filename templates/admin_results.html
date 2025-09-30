@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Natijalar</h3>
+<table class="table table-bordered">
+  <thead><tr><th>Talaba</th><th>Test</th><th>Raw</th><th>Band</th><th>Boshlagan</th><th>Tugatgan</th></tr></thead>
+  <tbody>
+    {% for s in submissions %}
+    <tr>
+      <td>{{ s['user_name'] }}</td>
+      <td>{{ s['test_title'] }}</td>
+      <td>{{ s['raw_score'] }}/{{ s['total_q'] }}</td>
+      <td>{{ '%.1f' % s['band_score'] }}</td>
+      <td>{{ s['started_at'] }}</td>
+      <td>{{ s['finished_at'] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

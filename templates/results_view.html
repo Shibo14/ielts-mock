@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Natija</h3>
+<p><strong>Test:</strong> {{ test['title'] }} ({{ test['section'] }})</p>
+<p><strong>Raw score:</strong> {{ sub['raw_score'] }} / {{ total }}</p>
+<p><strong>Band score (taxminiy):</strong> {{ '%.1f' % sub['band_score'] }}</p>
+<a class="btn btn-primary" href="{{ url_for('dashboard') }}">Orqaga</a>
+{% endblock %}

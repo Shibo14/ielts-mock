@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>{{ test['title'] }} – tayyormisiz?</h3>
+<p>Bo‘lim: <strong>{{ test['section'] }}</strong>, Davomiyligi: <strong>{{ test['duration_minutes'] }} daqiqa</strong></p>
+<form method="post" action="{{ url_for('test_start', slug=test['slug']) }}">
+  <button class="btn btn-success">Testni boshlash</button>
+</form>
+{% endblock %}

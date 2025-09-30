@@ -1,0 +1,9 @@
+body { background: #0b1220; color: #e9eef5; }
+.navbar { background: #0a0f1a !important; }
+.card { background: #111a2b; border: 1px solid #1c2942; }
+.list-group-item { background: #0f1726; color: #e9eef5; }
+.form-control, .form-select { background: #0f1726; color: #e9eef5; border: 1px solid #1c2942; }
+.btn-primary { background: #2563eb; border: none; }
+.btn-success { background: #16a34a; border: none; }
+.btn-danger { background: #dc2626; border: none; }
+.alert { border: none; }

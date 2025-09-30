@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="mb-4">Testlar</h3>
+<div class="row g-3">
+  {% for t in tests %}
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{ t['title'] }} <small class="text-muted">({{ t['section'] }})</small></h5>
+        <p class="card-text">Davomiyligi: {{ t['duration_minutes'] }} daqiqa</p>
+        <a class="btn btn-primary" href="{{ url_for('test_select', slug=t['slug']) }}">Boshlash</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% if current_user.is_authenticated and current_user.role == 'admin' %}
+<hr>
+<a class="btn btn-outline-secondary" href="{{ url_for('admin_panel') }}">Admin panel</a>
+{% endif %}
+{% endblock %}

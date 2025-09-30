@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Testlar</h3>
+<table class="table table-striped">
+  <thead><tr><th>Sarlavha</th><th>Bo‘lim</th><th>Davomiylik</th><th>Import</th></tr></thead>
+  <tbody>
+    {% for t in tests %}
+    <tr>
+      <td>{{ t['title'] }}</td>
+      <td>{{ t['section'] }}</td>
+      <td>{{ t['duration_minutes'] }}'</td>
+      <td>
+        <form class="d-inline" method="post" action="{{ url_for('admin_tests_import', test_id=t['id']) }}" enctype="multipart/form-data">
+          <input class="form-control form-control-sm" type="file" name="file" accept="application/json">
+          <button class="btn btn-sm btn-outline-primary mt-1">Savollar import</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<hr>
+<h4>Yangi test yaratish</h4>
+<form method="post" action="{{ url_for('admin_tests_create') }}" enctype="multipart/form-data">
+  <div class="row g-2">
+    <div class="col-md-3"><input name="title" class="form-control" placeholder="Sarlavha" required></div>
+    <div class="col-md-2">
+      <select name="section" class="form-select">
+        <option value="listening">listening</option>
+        <option value="reading">reading</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <select name="level" class="form-select">
+        <option value="academic">academic</option>
+        <option value="general">general</option>
+      </select>
+    </div>
+    <div class="col-md-2"><input type="number" name="duration" class="form-control" value="60"></div>
+    <div class="col-md-3"><input type="file" name="audio" class="form-control" accept="audio/*"></div>
+  </div>
+  <button class="btn btn-success mt-2">Yaratish</button>
+</form>
+{% endblock %}

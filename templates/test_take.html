@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center">
+  <h4>{{ test['title'] }}</h4>
+  <div>
+    <span class="badge bg-info">Qolgan vaqt: <span id="timer" data-minutes="{{ test['duration_minutes'] }}">--:--</span></span>
+  </div>
+</div>
+<hr>
+{% if test['section'] == 'listening' and test['audio_filename'] %}
+<div class="mb-3">
+  <audio controls src="{{ url_for('serve_audio', filename=test['audio_filename']) }}"></audio>
+</div>
+{% endif %}
+
+<ol class="list-group list-group-numbered">
+  {% for q in questions %}
+  <li class="list-group-item">
+    <div class="mb-2">{{ q['prompt']|safe }}</div>
+    {% if q['qtype'] == 'mcq' %}
+      {% set opts = q['options_json']|loadjson %}
+      {% for opt in opts %}
+      <div class="form-check">
+        <input class="form-check-input qa-input" type="radio" name="q{{ q['id'] }}" id="q{{ q['id'] }}_{{ loop.index }}" value="{{ opt }}" data-question-id="{{ q['id'] }}" data-submission-id="{{ submission['id'] }}">
+        <label class="form-check-label" for="q{{ q['id'] }}_{{ loop.index }}">{{ opt }}</label>
+      </div>
+      {% endfor %}
+    {% else %}
+      <input class="form-control qa-input" type="text" placeholder="Javob" data-question-id="{{ q['id'] }}" data-submission-id="{{ submission['id'] }}">
+    {% endif %}
+  </li>
+  {% endfor %}
+</ol>
+
+<form class="mt-4" method="post" action="{{ url_for('test_finish', slug=test['slug'], submission_id=submission['id']) }}">
+  <button class="btn btn-danger">Yakunlash</button>
+</form>
+{% endblock %}

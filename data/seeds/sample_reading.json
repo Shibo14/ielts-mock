@@ -1,0 +1,21 @@
+[
+  {
+    "qtype": "mcq",
+    "prompt": "<p>Passage 1: ... What is the main idea?</p>",
+    "options": [
+      "Economy slowdown",
+      "Marine life",
+      "Solar energy",
+      "Urban traffic"
+    ],
+    "answer_key": "Solar energy",
+    "order": 1
+  },
+  {
+    "qtype": "short",
+    "prompt": "Synonym for <em>abundant</em>:",
+    "options": [],
+    "answer_key": "plentiful",
+    "order": 2
+  }
+]
